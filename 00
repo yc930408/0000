@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MBTI 小遊戲</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a90e2;
+    }
+
+    .question {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #357ab8;
+    }
+
+    #result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MBTI 小遊戲</h1>
+
+  <form id="mbtiForm">
+    <div class="question">
+      <p>1. 你在聚會中通常會：</p>
+      <label><input type="radio" name="q1" value="E" required> 主動認識新朋友</label>
+      <label><input type="radio" name="q1" value="I"> 安靜觀察，不太主動</label>
+    </div>
+
+    <div class="question">
+      <p>2. 你傾向相信：</p>
+      <label><input type="radio" name="q2" value="S" required> 具體的經驗與事實</label>
+      <label><input type="radio" name="q2" value="N"> 直覺與靈感</label>
+    </div>
+
+    <div class="question">
+      <p>3. 做決定時，你更偏好：</p>
+      <label><input type="radio" name="q3" value="T" required> 合理分析與邏輯</label>
+      <label><input type="radio" name="q3" value="F"> 重視情感與關係</label>
+    </div>
+
+    <div class="question">
+      <p>4. 你的生活方式比較：</p>
+      <label><input type="radio" name="q4" value="J" required> 有計畫、有組織</label>
+      <label><input type="radio" name="q4" value="P"> 彈性、隨性</label>
+    </div>
+
+    <div style="text-align: center;">
+      <button type="submit">看結果</button>
+    </div>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById('mbtiForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      let mbti = '';
+      mbti += formData.get('q1'); // E/I
+      mbti += formData.get('q2'); // S/N
+      mbti += formData.get('q3'); // T/F
+      mbti += formData.get('q4'); // J/P
+
+      resultDiv.textContent = `你的 MBTI 類型是：${mbti}`;
+    });
+  </script>
+
+</body>
+</html>
